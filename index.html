@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ajax Firstlook</title>
+<script type="text/javascript">
+	
+	function updateText() {
+		
+		var current_text = document.getElementById('user_text').value;
+		//Create HTTPrequest object to interact with server
+		var http = new XMLHttpRequest();
+		//call a function every time state changes
+		http.onreadystatechange = function(){
+			//Check if there is a success from server
+			if( http.readyState == 4 && http.status == 200) {
+				var response = http.responseText;
+				document.getElementById('server_response').value = response;
+			}
+		};
+		
+		http.open("GET", "http://localhost/ajax-firstlook/server.php?user_text="+current_text , true);
+		http.send();
+	}
+</script>
+</head>
+
+<body>
+	<div>Input Text : <input type="text" id="user_text" onKeyUp="updateText();"></div><br>
+    <div>Server Resp. : <input type="text" id="server_response" name="server_response"></div>
+</body>
+</html>
