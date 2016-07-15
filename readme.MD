@@ -24,3 +24,15 @@ XMLHttpRequest Object is used to interact with the server.
 
 1. **responseText**: This contains the response from server as text
 2. **responseXML**: This receives the response from server as XML
+
+#AJAX IN JQUERY#
+1. $.get is used for making use of GET method for request
+2. $.post is used for making use of POST method for request
+
+**Syntax:**
+$.get(server_url, request_data, function(response_data, status, XMLHttpRequest), dataType)
+
+$.post(server_url, request_data, function(response_data, status, XMLHttpRequest), dataType)
+
+1. The function will be executed only when status is a success else not
+2. possible data type of response: html, text, xml, json etc.
