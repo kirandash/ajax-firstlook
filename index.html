@@ -6,7 +6,8 @@
 <script type="text/javascript">
 	
 	function updateText() {
-		
+		/*
+		// GET METHOD IN AJAX USING JAVASCRIPT
 		var current_text = document.getElementById('user_text').value;
 		//Create HTTPrequest object to interact with server
 		var http = new XMLHttpRequest();
@@ -21,6 +22,26 @@
 		
 		http.open("GET", "http://localhost/ajax-firstlook/server.php?user_text="+current_text , true);
 		http.send();
+		*/
+		
+		// POST METHOD IN AJAX USING JAVASCRIPT
+		var current_text = document.getElementById('user_text').value;
+		//Create HTTPrequest object to interact with server
+		var http = new XMLHttpRequest();
+		//call a function every time state changes
+		http.onreadystatechange = function(){
+			//Check if there is a success from server
+			if( http.readyState == 4 && http.status == 200) {
+				var response = http.responseText;
+				document.getElementById('server_response').value = response;
+			}
+		};
+		
+		http.open("POST", "http://localhost/ajax-firstlook/server.php" , true);
+		// For post method the datatype must be specified in our case it is urlencoded
+		http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		http.send("user_text="+current_text);
+				
 	}
 </script>
 </head>
